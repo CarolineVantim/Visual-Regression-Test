@@ -1,10 +1,10 @@
-report({
+{
   "testSuite": "BackstopJS",
   "tests": [
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_Homepage_0_document_0_tablet.png",
-        "test": "../bitmaps_test/20251016-162708/backstop_default_Homepage_0_document_0_tablet.png",
+        "test": "../bitmaps_test/20251016-162612/backstop_default_Homepage_0_document_0_tablet.png",
         "selector": "document",
         "fileName": "backstop_default_Homepage_0_document_0_tablet.png",
         "label": "Homepage",
@@ -20,15 +20,18 @@ report({
             "width": 0,
             "height": 0
           },
-          "misMatchPercentage": "0.00"
-        }
+          "rawMisMatchPercentage": 0.8280436197916666,
+          "misMatchPercentage": "0.83",
+          "analysisTime": 34
+        },
+        "diffImage": "../bitmaps_test/20251016-162612/failed_diff_backstop_default_Homepage_0_document_0_tablet.png"
       },
-      "status": "pass"
+      "status": "fail"
     },
     {
       "pair": {
         "reference": "../bitmaps_reference/backstop_default_Aboutpage_0_document_0_tablet.png",
-        "test": "../bitmaps_test/20251016-162708/backstop_default_Aboutpage_0_document_0_tablet.png",
+        "test": "../bitmaps_test/20251016-162612/backstop_default_Aboutpage_0_document_0_tablet.png",
         "selector": "document",
         "fileName": "backstop_default_Aboutpage_0_document_0_tablet.png",
         "label": "Aboutpage",
@@ -44,14 +47,13 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 4.363505045572916,
-          "misMatchPercentage": "4.36",
-          "analysisTime": 34
-        },
-        "diffImage": "../bitmaps_test/20251016-162708/failed_diff_backstop_default_Aboutpage_0_document_0_tablet.png"
+          "rawMisMatchPercentage": 0.010426839192708332,
+          "misMatchPercentage": "0.01",
+          "analysisTime": 25
+        }
       },
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "id": "backstop_default"
-});
+}

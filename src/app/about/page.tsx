@@ -16,9 +16,7 @@ export default function About() {
           Sobre este projeto
         </h1>
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">
-          Este é um exemplo de nova página criada com Next.js 14 e Tailwind CSS.  
-          Aqui você pode adicionar qualquer conteúdo adicional, como descrições, imagens, 
-          links ou componentes reutilizáveis.
+          Este é um exemplo de nova página criada com Next.js 14 e Tailwind CSS. 
         </p>
 
         <a
