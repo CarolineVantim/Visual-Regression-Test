@@ -20,7 +20,6 @@ export default function About() {
         </p>
 
         <a
-          href="/"
           className="inline-flex items-center justify-center rounded-full bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] transition-colors font-medium text-sm sm:text-base h-10 sm:h-12 px-6"
         >
           Voltar para a Home
