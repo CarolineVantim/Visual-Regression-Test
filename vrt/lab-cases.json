@@ -1,0 +1,20 @@
+{
+  "$comment": "Catálogo de casos do laboratório de assertividade. 'expect' = o que uma boa ferramenta de VRT DEVERIA fazer: 'fail' (regressão real, tem que detectar) ou 'pass' (ruído/mudança invisível, não pode acusar).",
+  "cases": [
+    { "id": "baseline",        "expect": "pass", "category": "estabilidade", "description": "Mesma página, sem nenhuma mudança (timestamp, animação e conteúdo assíncrono variam entre capturas)" },
+    { "id": "dom-only",        "expect": "pass", "category": "estabilidade", "description": "Mudança só no DOM, sem efeito visual (classes, atributos, elemento display:none)" },
+    { "id": "random-banner",   "expect": "pass", "category": "estabilidade", "description": "Banner com conteúdo aleatório, removido via removeSelectors" },
+
+    { "id": "shift-1px",       "expect": "fail", "category": "layout",      "description": "Botão deslocado 1px para a direita" },
+    { "id": "shift-4px",       "expect": "fail", "category": "layout",      "description": "Botão deslocado 4px para baixo" },
+    { "id": "spacing",         "expect": "fail", "category": "layout",      "description": "Espaçamento entre itens da lista +4px" },
+    { "id": "radius",          "expect": "fail", "category": "layout",      "description": "Border-radius do card de 12px para 16px" },
+    { "id": "missing-icon",    "expect": "fail", "category": "conteúdo",    "description": "Ícone de um item da lista sumiu" },
+    { "id": "text-change",     "expect": "fail", "category": "conteúdo",    "description": "Uma palavra do parágrafo trocada (mesmo tamanho aproximado)" },
+    { "id": "color-subtle",    "expect": "fail", "category": "cor",         "description": "Cor do botão #171717 → #262626 (quase imperceptível a olho nu)" },
+    { "id": "color-obvious",   "expect": "fail", "category": "cor",         "description": "Cor do botão trocada para vermelho" },
+    { "id": "font-weight",     "expect": "fail", "category": "tipografia",  "description": "Título de bold (700) para semibold (600)" },
+    { "id": "font-size",       "expect": "fail", "category": "tipografia",  "description": "Parágrafo de 16px para 17px" },
+    { "id": "letter-spacing",  "expect": "fail", "category": "tipografia",  "description": "Letter-spacing do título +0.5px" }
+  ]
+}

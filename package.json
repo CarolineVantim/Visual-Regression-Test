@@ -1,12 +1,21 @@
 {
-  "name": "poc-next-backstop",
+  "name": "visual-regression-test",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "serve:vrt": "next build && next start -H 0.0.0.0 -p 3100",
+    "backstop:reference": "backstop reference --config=backstop.config.js --docker",
+    "backstop:test": "backstop test --config=backstop.config.js --docker",
+    "vrt:reference": "start-server-and-test serve:vrt http://localhost:3100 backstop:reference",
+    "vrt:test": "start-server-and-test serve:vrt http://localhost:3100 backstop:test",
+    "vrt:approve": "backstop approve --config=backstop.config.js",
+    "vrt:lab": "start-server-and-test serve:vrt http://localhost:3100 lab:run",
+    "lab:run": "node vrt/run-lab.mjs",
+    "vrt:accuracy": "node vrt/accuracy.mjs"
   },
   "dependencies": {
     "next": "15.5.4",
@@ -22,7 +31,7 @@
     "backstopjs": "^6.3.25",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-    "playwright": "^1.55.1",
+    "start-server-and-test": "^3.0.13",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
