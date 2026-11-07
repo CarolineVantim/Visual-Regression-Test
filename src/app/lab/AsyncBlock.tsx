@@ -2,11 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Simula um conteúdo que chega depois do primeiro render (fetch, lazy load...).
- * Sem `readySelector`, a captura pode pegar o skeleton em uma execução e o
- * conteúdo final em outra -> falso positivo.
- */
 export default function AsyncBlock() {
   const [loaded, setLoaded] = useState(false);
 

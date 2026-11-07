@@ -1,5 +1,4 @@
 {
-  "$comment": "Catálogo de casos do laboratório de assertividade. 'expect' = o que uma boa ferramenta de VRT DEVERIA fazer: 'fail' (regressão real, tem que detectar) ou 'pass' (ruído/mudança invisível, não pode acusar).",
   "cases": [
     { "id": "baseline",        "expect": "pass", "category": "estabilidade", "description": "Mesma página, sem nenhuma mudança (timestamp, animação e conteúdo assíncrono variam entre capturas)" },
     { "id": "dom-only",        "expect": "pass", "category": "estabilidade", "description": "Mudança só no DOM, sem efeito visual (classes, atributos, elemento display:none)" },

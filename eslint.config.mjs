@@ -24,7 +24,6 @@ const eslintConfig = [
     ],
   },
   {
-    // Configs e engine scripts do BackstopJS são CommonJS por exigência da lib.
     files: ["backstop*.config.js", "vrt/**/*.js", "backstop_data/engine_scripts/**/*.js"],
     rules: {
       "@typescript-eslint/no-require-imports": "off",

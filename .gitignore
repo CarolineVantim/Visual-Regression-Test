@@ -13,7 +13,7 @@
 # testing
 /coverage
 
-# backstop: só as referências da suíte da aplicação são versionadas
+# backstop
 /backstop_data/bitmaps_test/
 /backstop_data/html_report/
 /backstop_data/ci_report/

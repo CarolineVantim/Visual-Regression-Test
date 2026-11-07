@@ -2,18 +2,6 @@ import type { CSSProperties } from "react";
 import labCases from "../../../vrt/lab-cases.json";
 import AsyncBlock from "./AsyncBlock";
 
-/**
- * Laboratório de assertividade do VRT.
- *
- * /lab                 -> baseline (referência)
- * /lab?variant=<id>    -> aplica UMA mudança controlada (ver vrt/lab-cases.json)
- *
- * A página contém ruído proposital presente em TODAS as variantes:
- *  - timestamp que muda a cada request       -> neutralizado com hideSelectors
- *  - spinner animado                         -> neutralizado no onReady (animações desligadas)
- *  - bloco que carrega de forma assíncrona   -> neutralizado com readySelector
- */
-
 type Props = { searchParams: Promise<{ variant?: string }> };
 
 const knownIds = new Set(labCases.cases.map((c) => c.id));
@@ -77,7 +65,6 @@ export default async function Lab({ searchParams }: Props) {
     <div
       className="font-sans"
       style={{ minHeight: "100vh", background: "#fafafa", display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: 48 }}
-      // Mudanças "dom-only": atributos/classes diferentes, nenhum efeito visual.
       data-variant={variant}
     >
       {is("random-banner") && (

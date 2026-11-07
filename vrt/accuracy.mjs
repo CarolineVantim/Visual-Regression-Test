@@ -1,22 +1,10 @@
 #!/usr/bin/env node
-/**
- * Lê o report.json da última execução do laboratório e mede a assertividade
- * da ferramenta: matriz de confusão (VP/FP/VN/FN) por threshold e por recorte.
- *
- *   VP = regressão real detectada        FN = regressão real que passou batida
- *   VN = ruído corretamente ignorado     FP = alarme falso
- *
- * Como a % bruta de diferença de cada comparação fica salva no report, dá para
- * simular qualquer threshold sem capturar de novo.
- *
- * Uso: node vrt/accuracy.mjs [caminho/para/report.json]
- */
 import fs from 'node:fs';
 import path from 'node:path';
 
 const LAB_DIR = 'backstop_data/lab';
 const THRESHOLDS = [0, 0.01, 0.05, 0.1, 0.5, 1, 2, 5];
-const DEFAULT_THRESHOLD = 0.1; // padrão usado na suíte da aplicação
+const DEFAULT_THRESHOLD = 0.1;
 
 const cases = JSON.parse(fs.readFileSync('vrt/lab-cases.json', 'utf8')).cases;
 const caseById = Object.fromEntries(cases.map((c) => [c.id, c]));
@@ -35,7 +23,6 @@ if (!reportPath) {
 }
 const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
 
-// ---- normaliza resultados -------------------------------------------------
 const rows = report.tests.map(({ pair }) => {
   const id = pair.label.replace(/^lab /, '');
   const diff = pair.diff || {};
@@ -72,7 +59,6 @@ const fmt = (n) => (n === 0 ? '0' : n < 0.001 ? '<0.001' : n.toFixed(3));
 const selectors = [...new Set(rows.map((r) => r.selector))];
 const selectorName = (s) => (s === 'document' ? 'página inteira' : `componente (${s})`);
 
-// ---- monta o relatório ----------------------------------------------------
 const out = [];
 out.push('# Assertividade do BackstopJS: laboratório de casos controlados', '');
 out.push(`Report analisado: \`${reportPath}\`  `);

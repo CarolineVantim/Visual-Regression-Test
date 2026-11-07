@@ -1,13 +1,5 @@
-/**
- * Configuração compartilhada entre a suíte da aplicação (backstop.config.js)
- * e o laboratório de assertividade (backstop.lab.config.js).
- */
 const fs = require('fs');
 
-// Dentro do container do Backstop (--docker), "localhost" é o próprio container.
-// O host é alcançado via host.docker.internal (mapeado no dockerCommandTemplate).
-// Porta dedicada (e não 3000) para não capturar sem querer um `next dev` qualquer
-// que esteja rodando na máquina. Mantenha em sincronia com os scripts do package.json.
 const PORT = 3100;
 const inDocker = fs.existsSync('/.dockerenv');
 const BASE_URL = process.env.VRT_BASE_URL || `http://${inDocker ? 'host.docker.internal' : 'localhost'}:${PORT}`;
@@ -18,11 +10,6 @@ const viewports = {
   desktop: { label: 'desktop', width: 1440, height: 900 }
 };
 
-/**
- * Padrões aplicados a todo cenário. Convenção para os devs:
- *  - data-vrt="dynamic"  -> conteúdo que muda sempre (datas, contadores): fica invisível na captura
- *  - data-vrt="remove"   -> elementos que nem devem existir na captura (banners, chat widgets)
- */
 const scenarioDefaults = {
   readySelector: '',
   delay: 0,
@@ -53,23 +40,17 @@ const baseConfig = ({ id, dataDir }) => ({
     ci_report: `${dataDir}/ci_report`,
     json_report: `${dataDir}/json_report`
   },
-  // 'browser' gera o HTML report (dentro do Docker ele não tenta abrir o navegador).
-  // 'CI' gera JUnit XML em ci_report/ (a variável CI é repassada ao container).
   report: ['browser', 'json', ...(process.env.CI ? ['CI'] : [])],
   engine: 'playwright',
   engineOptions: {
     browser: 'chromium',
     args: ['--no-sandbox', '--font-render-hinting=none', '--force-color-profile=srgb', '--disable-gpu']
   },
-  // --user: arquivos gerados ficam com o seu usuário (e não root) no host.
-  // --add-host: permite que o container acesse o servidor Next rodando no host.
   dockerCommandTemplate:
     'docker run --rm -i --user $(id -u):$(id -g) -e HOME=/tmp -e CI ' +
     '--add-host=host.docker.internal:host-gateway ' +
     '--mount type=bind,source="{cwd}",target=/src ' +
     'backstopjs/backstopjs:{version} {backstopCommand} {args}',
-  // Sem isso o Backstop compara a % ARREDONDADA (2 casas) com o threshold:
-  // uma diferença de 0.004% vira "0.00" e passa mesmo com threshold 0.
   resembleOutputOptions: { usePreciseMatching: true },
   asyncCaptureLimit: 4,
   asyncCompareLimit: 50,
