@@ -3,7 +3,7 @@ module.exports = async (page, scenario) => {
   const clickSelector = scenario.clickSelectors || scenario.clickSelector;
   const keyPressSelector = scenario.keyPressSelectors || scenario.keyPressSelector;
   const scrollToSelector = scenario.scrollToSelector;
-  const postInteractionWait = scenario.postInteractionWait; // selector [str] | ms [int]
+  const postInteractionWait = scenario.postInteractionWait;
 
   if (keyPressSelector) {
     for (const keyPressSelectorItem of [].concat(keyPressSelector)) {

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd //wsl.localhost/Ubuntu/home/cvantim/Visual-Regression-Test/backstop_data/engine_scripts/playwright && cat interceptImages.js overrideCSS.js loadCookies.js)",
+      "Read(///wsl.localhost/Ubuntu/home/cvantim/Visual-Regression-Test/backstop_data/engine_scripts/**)",
+      "Bash(export MSYS_NO_PATHCONV=1)",
+      "Bash(wsl.exe -e bash -ic 'cd ~/Visual-Regression-Test && git ls-files -co --exclude-standard | grep -E \"\\\\.\\(js|mjs|ts|tsx|css|json\\)$\" | grep -v package-lock | xargs grep -nE \"\\(^|[^:]\\)//|/\\\\*|\\\\\\\\\\\\$comment\" | grep -vE \"https?://\"; echo GREP_DONE; npx tsc --noEmit && echo TSC_OK; npm run lint 2>&1 | tail -3; timeout 600 npm run vrt:test > /tmp/test.log 2>&1; echo TEST=$?; grep -E \"Passed|Failed\" /tmp/test.log')",
+      "Bash(wsl.exe -e bash -ic 'cd ~/Visual-Regression-Test && git add -A && git commit -q -F /mnt/c/Users/User/AppData/Local/Temp/claude/ca20afff3944e454/e83de73e-3aaf-4250-bdf6-d04e2b373d66/scratchpad/commit-msg2.txt && git log --oneline -3 && git status -sb | head -1')"
+    ]
+  }
+}

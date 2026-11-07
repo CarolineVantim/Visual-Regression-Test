@@ -1,0 +1,50 @@
+name: Visual regression
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      lab:
+        description: "Rodar também o laboratório de assertividade"
+        type: boolean
+        default: false
+
+jobs:
+  app:
+    name: Suíte da aplicação
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run vrt:test
+      - name: Publicar relatório
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backstop-report
+          path: |
+            backstop_data/html_report
+            backstop_data/bitmaps_test
+            backstop_data/bitmaps_reference
+
+  lab:
+    name: Laboratório de assertividade
+    if: github.event_name == 'workflow_dispatch' && inputs.lab
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run vrt:lab
+      - run: cat backstop_data/lab/accuracy-report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lab-report
+          path: backstop_data/lab

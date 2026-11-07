@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -19,15 +20,16 @@ export default function About() {
           Este é um exemplo de nova página criada com Next.js 14 e Tailwind CSS. 
         </p>
 
-        <a
+        <Link
+          href="/"
           className="inline-flex items-center justify-center rounded-full bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] transition-colors font-medium text-sm sm:text-base h-10 sm:h-12 px-6"
         >
           Voltar para a Home
-        </a>
+        </Link>
       </main>
 
       <footer className="mt-16 text-sm text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} - Criado com ❤️ usando Next.js
+        © <span data-vrt="dynamic">{new Date().getFullYear()}</span> - Criado com ❤️ usando Next.js
       </footer>
     </div>
   );

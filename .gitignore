@@ -13,6 +13,14 @@
 # testing
 /coverage
 
+# backstop
+/backstop_data/bitmaps_test/
+/backstop_data/html_report/
+/backstop_data/ci_report/
+/backstop_data/json_report/
+/backstop_data/lab/
+backstop.config-for-docker.json
+
 # next.js
 /.next/
 /out/
